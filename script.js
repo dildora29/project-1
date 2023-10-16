@@ -208,7 +208,7 @@ function userLogOut() {
   let min = Math.trunc(time / 60);
   let sec = time % 60;
 
-  let timer = setInterval(() => {
+  timer = setInterval(() => {
     labelTimer.textContent = `${addZeroBegin(min)}:${addZeroBegin(sec)}`;
 
     if (sec == 0 && min != 0) {
@@ -222,17 +222,17 @@ function userLogOut() {
     }
 
     sec--;
-  }, 100);
+  }, 1000);
 }
 
-function addZeroBegin(num){
-  return String(num).padStart(2, '0')
+function addZeroBegin(num) {
+  return String(num).padStart(2, '0');
 }
 
 //////////////////////////////////////
 // Events
 
-let currentUser;
+let currentUser, timer;
 
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
@@ -273,6 +273,9 @@ btnLogin.addEventListener('click', function (e) {
   containerApp.style.opacity = 1;
   labelWelcome.textContent = `Hello, ${currentUser.owner.split(' ')[0]}`;
   labelDate.textContent = displayTime(new Date());
+
+  // clearInterval
+  clearInterval(timer);
 
   // Update UI
   updateUI(currentUser);
