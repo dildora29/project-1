@@ -206,23 +206,27 @@ function userLogOut() {
   let time = 1200;
 
   let min = Math.trunc(time / 60);
-  let secund = time % 60;
+  let sec = time % 60;
 
   let timer = setInterval(() => {
-    labelTimer.textContent = `${String(min).padStart(2, '0')}:${secund}`;
+    labelTimer.textContent = `${addZeroBegin(min)}:${addZeroBegin(sec)}`;
 
-    if (secund == 0 && min != 0) {
+    if (sec == 0 && min != 0) {
       min--;
-      secund = 60;
-    } else if (min == 0 && secund == 0) {
+      sec = 60;
+    } else if (min == 0 && sec == 0) {
       containerApp.style.opacity = 0;
       labelWelcome.textContent = 'Log in to get started';
 
       clearInterval(timer);
     }
 
-    secund--;
-  }, 100);
+    sec--;
+  }, 500);
+}
+
+function addZeroBegin(num){
+  return String(num).padStart(2, '0')
 }
 
 //////////////////////////////////////
@@ -358,7 +362,7 @@ btnSort.addEventListener('click', function (k) {
   k.preventDefault();
 
   sort = !sort;
-  displayMovements(currentUser.movements, sort);
+  displayMovements(currentUser, sort);
 
   console.log(sort);
 });
