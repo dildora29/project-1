@@ -203,7 +203,7 @@ function displayTime(date) {
 // userLogOut
 
 function userLogOut() {
-  let time = 1200;
+  let time = 300;
 
   let min = Math.trunc(time / 60);
   let sec = time % 60;
@@ -222,7 +222,7 @@ function userLogOut() {
     }
 
     sec--;
-  }, 500);
+  }, 100);
 }
 
 function addZeroBegin(num){
